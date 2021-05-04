@@ -41,56 +41,7 @@ Tasks:
   - only relevant sentences from the Annotated Organic Dataset
 
 
-## Calculating Loss and F1 Scores
-
-The annotations imply a *multi-label multi-class* classification problem, see [here how the F1 score calculation works](https://scikit-learn.org/stable/modules/multiclass.html) and [here how to calculate the loss in Keras](https://www.depends-on-the-definition.com/classify-toxic-comments-on-wikipedia).
-
-Since you cannot use softmax, you need to find the optimal threshold for the activations of your output neurons on the training set. Therefore, for each output, you [calculate the ROC curve](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html) which gives you the rates for true positives and false positives as well as according thresholds. To find the optimal threshold for that very output, choose ```thresholds[argmax(tpr-fpr)]```. This you have to do for each output separately.
-
-Please use the [F1 score function from sklearn](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics). For less than 6 classes, please use macro F1 score. For more than 10 classes, use micro F1 score, for the cases in between report both.
-
-The gold standard as well as the predictions which you pass as numpy array parameter for ```y_true``` and ```y_pred``` to these functions should follow the following exepmlified format/dimensions without the headers of course:
-
-
-| class1 | class2 | class3 | class4 |
-|--------|--------|--------|--------|
-|   true |  false |   true |  false |
-|  false |   true |  false |  false |
-|  false |  false |  false |  false |
-|   true |   true |   true |   true |
-
-Classes for aspect-based sentiment analysis can be one of the following options:
-
-- triplets of (attribute, entity, sentiment)
-- tuples of (attribute, entity), i.e., aspect classes
-- only attributes for attribute extraction
-- only entities for entitiy detection
-- only sentiment for sentiment analysis
-
-In order to obtain these Numpy arrays, you might want to use [MultiLabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MultiLabelBinarizer.html) as it is exemplified by Omar Shouman [Jupyter Notebook](https://gitlab.lrz.de/ga89mis/thesis_omar/blob/master/F1_score/F1_sklearn.ipynb). Please note that this now assumes a multi-label classification problem (one sentence has multiple annotation labels). The following is simpler and might work, too:
-
-```python
-#Provide the column name for the column that is needed to be multi-hot-encoded
-categoryColumn = "" 
-
-multiHotEncoded = pd.get_dummies(dataframe[categoryColumn], dummy_na=True)
- 
-# To get it as a numpy array (Including the additional NaN class)
-multiHotEncoded.values
-
-# To get it as a numpy array and drop the introduced NaN class 
-multiHotEncoded.drop(columns=multiHotEncoded.columns[-1]).values
-```
-
-### Single-Label Problem ####
-
-Whenever possible, please treat the problem as a multi-label multi-class problem. If multi-label is not possible, you have to reduce the multi-label problem to a single-label problem. Consequentially, you have to remove annotations in the case you have multiple annotations per sample, i.e., sentence, in order to come up with only one annotation per sample. In that case, please remove all samples from the dataset which have more than one annotation.
-
 ## Annotations
-
-### Descriptions of the Annotation Classes ###
-
-[This is the file](https://syncandshare.lrz.de/dl/fi7p5CV5CCyZeoCXGLexgfna/Labeling_Workshop_updated_18-10-19.xlsx) provided to all annotators containing detailed descriptions of what the aspects etc actually mean.
 
 ### Entities
 
