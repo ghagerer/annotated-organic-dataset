@@ -1,8 +1,5 @@
 # Organic Dataset
 
-The dataset was crawled in late 2017 from Quora with the search terms being "organic", "organic food", "organic agriculture", and "organic farming" are used. The comments deal with organic food or agriculture and discussed characteristics, advantages, and disadvantages of organic food production and consumption. Each sentence has sentiment (positive, negative, neutral) and entity, the sentiment target, annotated.
-
-
 ## Description ##
 
 ### Source
