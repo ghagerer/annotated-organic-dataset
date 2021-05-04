@@ -127,13 +127,11 @@ The following function creates a mapping from fine-grained to coarse grained ent
 You can use the entity-attribute value (e.g. `p-t`) to get the new coarse category tuple (e.g. `organic-experienced quality`) for that sample.
 
 ```python
-mapping = {}
-for entity_key in od_entity_mapping.keys():
-	for attribute_key in od_attribute_mapping.keys():
-		c_ent = od_coarse_entities[entity_key]
-		c_att = od_coarse_attributes[attribute_key]
-		compound_key = f'{entity_key}-{attribute_key}'
-		mapping[compound_key] = f'{c_ent}: {c_att}'
+mapping = {
+    entity_key+"-"+attribute_key: od_coarse_entities[entity_key]+": "+od_coarse_attributes[attribute_key]
+    for entity_key in od_entity_mapping.keys()
+    for attribute_key in od_attribute_mapping.keys():
+}
 # add a 'missing aspect' key
 mapping[''] = ''
 
