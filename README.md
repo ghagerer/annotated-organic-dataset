@@ -26,18 +26,6 @@ Terminology:
 - a comment is relevant when it contains at least one relevant sentence
 - a sentence is relevant when it is annotated as relevant
 
-Tasks:
-
-- relevance classification of comments
-  - all comments from the Annotated Organic Dataset
-- aspect-based sentiment analysis on sentences of relevant comments
-  - only relevant comments from the Annotated Organic Dataset
-  - there is an additional target "n/a" for not applicable
-  - the F1 score must be reported with and without consideration of the "n/a" class
-- aspect-based sentiment analysis only on relevant sentences
-  - only relevant sentences from the Annotated Organic Dataset
-
-
 ## Annotations
 
 ![annotation-distribution](https://user-images.githubusercontent.com/875050/116995733-ba194b80-acda-11eb-8ed6-acd000e072c4.png)
