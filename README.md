@@ -40,6 +40,9 @@ Tasks:
 
 ## Annotations
 
+![annotation-distribution](https://user-images.githubusercontent.com/875050/116995733-ba194b80-acda-11eb-8ed6-acd000e072c4.png)
+
+
 ### Entities
 
 Mapping from dataset letters to human-readable entities
