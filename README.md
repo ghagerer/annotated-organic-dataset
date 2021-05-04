@@ -17,7 +17,7 @@ The data is annotated by each of the 10 coders separately; it is divided into 10
 4616 sentences contain organic entities with 39% neutral, 32% positive, and 29% negative sentiments.
 After annotation, the data splits are 80% training, 10% validation, and 10% test set. The data distribution over sentiments, entities, and attributes remains similar among the splits.
 
-
+Inter-rater reliability: We prepared a separate data partition of 300 sentences annotated by all annotators for that purpose, see `data/overlapping.csv`.
 
 ## Pre-Processing
 
